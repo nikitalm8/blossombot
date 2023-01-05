@@ -1,26 +1,30 @@
 import asyncio
 import pytube
 
+from asyncio import AbstractEventLoop
 from discord import (
     FFmpegPCMAudio,
     PCMVolumeTransformer,
 )
 
 
-async def get_source(url, loop=None, stream=True):
+async def get_source(url, loop=None) -> PCMVolumeTransformer:
 
     for _ in range(3):
 
         try:
 
-            return await YTDLSource.from_url(url, loop=loop, stream=stream)
+            return (await VolumeTransformer.from_url(url, loop=loop))
 
         except:
             
             continue
 
 
-class YTDLSource(PCMVolumeTransformer): # TODO: Refactor this class
+class VolumeTransformer(PCMVolumeTransformer): 
+    """
+    A PCMVolumeTransformer subclass that fetches YouTube audio streams
+    """
 
     DEFAULT_OPTIONS = {
         'options': '-vn',
@@ -28,25 +32,24 @@ class YTDLSource(PCMVolumeTransformer): # TODO: Refactor this class
     } 
 
 
-    def __init__(self, source, *, data=None, volume=0.5):
+    def __init__(self, source: FFmpegPCMAudio, volume: int=0.5) -> None:
         
         super().__init__(source, volume)
 
 
     @classmethod
-    async def from_url(cls, url, *, loop=None, stream=False, play=False):
-        """
-        This method was first implemented via YoutubeDl, but it was replaced with Pytube
-        The other code was not refactored, so some params are useless
-        """
+    async def from_url(cls, url: str, loop: AbstractEventLoop=None, volume: int=0.5) -> PCMVolumeTransformer:
 
         loop = loop or asyncio.get_event_loop()
-        data = await loop.run_in_executor(None, lambda: pytube.YouTube(url).streams.filter(only_audio=True)[-1].url)
+        data = await loop.run_in_executor(
+            None, 
+            lambda: pytube.YouTube(url).streams.filter(only_audio=True)[-1].url
+        )
 
-        return cls(FFmpegPCMAudio(data, **cls.DEFAULT_OPTIONS))
+        return cls(FFmpegPCMAudio(data, **cls.DEFAULT_OPTIONS), volume)
 
 
-async def search(loop: asyncio.AbstractEventLoop, query: str) -> pytube.YouTube:
+async def search(loop: AbstractEventLoop, query: str) -> pytube.YouTube:
 
     for _ in range(3):
 
