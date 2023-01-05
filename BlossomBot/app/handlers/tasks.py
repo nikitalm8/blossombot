@@ -5,7 +5,6 @@ from app.templates import play as texts
 from app.utils.ytdl import get_source
 from app.database.models.guild import Guild
 
-from discord import PartialEmoji
 from discord.ext import commands, tasks
 from discord.ui import (
     View, 
@@ -17,6 +16,9 @@ from sqlalchemy import select
 
 
 class PlayerView(View):
+    """
+    Keyboard view for player
+    """
 
     def __init__(self, voice_client) -> None:
 
@@ -102,6 +104,9 @@ class TaskHandlers(commands.Cog):
 
     @tasks.loop(seconds=0.5)
     async def player(self):
+        """
+        Task which handles music player
+        """
     
         for client in self.bot.voice_clients:
             
@@ -166,6 +171,9 @@ class TaskHandlers(commands.Cog):
 
     @tasks.loop(seconds=10)
     async def afk(self):
+        """
+        Automatically disconnects from voice channels if no one is in it or if the bot is paused
+        """
 
         for client in self.bot.voice_clients:
 

@@ -14,6 +14,9 @@ from sqlalchemy import update
 
 
 class LanguageSelector(View):
+    """
+    Keyboard view for language selection
+    """
 
 
     def __init__(self, bot: commands.Bot) -> None:
@@ -52,6 +55,9 @@ class LanguageSelector(View):
         )
 
 class CommonHandler(commands.Cog):
+    """
+    Cog for handling of common commands
+    """
 
 
     def __init__(self, bot: commands.Bot) -> None:

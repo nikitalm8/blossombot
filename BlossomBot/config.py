@@ -1,6 +1,6 @@
-BOT_TOKEN = 'YOUR-TOKEN-HERE'
+BOT_TOKEN = ''
 PREFIX = '!'
 
-DATABASE_URL = ''  # DEFAULT SQLITE3 PATH: sqlite+aiosqlite:///./app/database/database.db
+DATABASE_URL = 'sqlite+aiosqlite:///./app/database/database.db'  # DEFAULT SQLITE3 PATH
 
 data = {}

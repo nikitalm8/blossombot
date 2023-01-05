@@ -6,7 +6,9 @@ from discord.ext import commands
 
     
 class PlayerHandlers(commands.Cog):
-
+    """
+    Cog for handling player commands
+    """
 
     def __init__(self, bot: commands.Bot) -> None:
 

@@ -8,6 +8,9 @@ from discord.ext import commands
 
 
 class RegMiddleware:
+    """
+    Simple middleware which registers guilds in database and provides guild info
+    """
 
     @staticmethod
     async def before_invoke(ctx: commands.Context):

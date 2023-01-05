@@ -8,8 +8,11 @@ from sqlalchemy import delete
 
 
 class EventHandlers(commands.Cog):
+    """
+    Cog for all common events
+    """
 
-    SYNCED = False
+    FIRST_RUN = False
 
     def __init__(self, bot: commands.Bot) -> None:
 
@@ -21,11 +24,10 @@ class EventHandlers(commands.Cog):
 
         await self.bot.change_presence(activity=discord.Game(name='Try out button menu!'))
 
-        if not self.SYNCED: 
+        if not self.FIRST_RUN: 
 
             await self.bot.tree.sync()
-
-        await tasks.setup(self.bot)
+            await tasks.setup(self.bot)
 
 
     @commands.Cog.listener()

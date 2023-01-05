@@ -3,6 +3,9 @@ from pytube import YouTube
 
 
 class Song:
+    """
+    Base class for the song in queue
+    """
 
     def __init__(self, title: str, url: str, duration: int) -> None:
 
@@ -12,6 +15,9 @@ class Song:
 
 
 class VoiceClient:
+    """
+    Base class for the guild's queue
+    """
 
     queue = []
     nowplaying = None

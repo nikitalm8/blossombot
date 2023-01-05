@@ -2,17 +2,13 @@ from app.utils import ytdl
 from app.utils.check_for_command import answer_or_react
 from app.templates import queue as texts
 
-from app.utils import client
-
 from discord.ext import commands
-from discord import MessageType
 
-dummysong = client.Song(
-    'test', 'test', 22
-)
 
 class QueueHandlers(commands.Cog):
-
+    """
+    Cog for handling queue commands
+    """
 
     def __init__(self, bot: commands.Bot) -> None:
 
