@@ -129,13 +129,13 @@ class TaskHandlers(commands.Cog):
                         del config.data[client.guild.id]
                         return
 
-                    elif not song:
+                    elif not song or song is None:
 
                         return
 
                     async with data.channel.typing():
                             
-                        player = await get_source(song.url, stream=True)
+                        player = await get_source(song.url)
                         client.play(player)
 
                     guild = (await self.bot.database.execute(
