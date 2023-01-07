@@ -24,8 +24,10 @@ All the guides are provided in the oficial [Discord server](https://discord.gg/j
 
  - ``Python 3.9+``
  - ``discord.py >= 2.1.0``
- - ``youtube_dl``
+ - ``PyNaCl ~= 1.5.0``
  - ``pytube >= 12.0.0``
+ - ``aiosqlite >= 0.17.0``
+ - ``sqlalchemy >= 1.4.0``
 
 ## Features
 
